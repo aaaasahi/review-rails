@@ -17,6 +17,8 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  belongs_to :user
+
   # 日付表示
   def display_created_at
     I18n.l(created_at, format: :default)
