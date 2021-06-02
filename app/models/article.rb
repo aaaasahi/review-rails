@@ -19,6 +19,7 @@ class Article < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   def author_name
     user.display_name
