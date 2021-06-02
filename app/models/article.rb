@@ -17,11 +17,18 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  has_one_attached :eyecatch
+
   has_many :comments, dependent: :destroy
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   def author_name
     user.display_name
+  end
+
+  def like_count
+    likes.count
   end
 
 
