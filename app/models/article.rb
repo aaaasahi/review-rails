@@ -25,6 +25,10 @@ class Article < ApplicationRecord
     user.display_name
   end
 
+  def like_count
+    likes.count
+  end
+
 
   # 日付表示
   def display_created_at
