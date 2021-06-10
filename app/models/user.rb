@@ -49,6 +49,11 @@ class User < ApplicationRecord
     following_relationships.create!(following_id: user.id)
   end
 
+  def unfollow!(user)
+    follow = follower_relationships.find_by!(following_id: user.id)
+    follow.destroy!
+  end
+
   def display_name
     profile&.nickname || self.email.split('@').first
   end
