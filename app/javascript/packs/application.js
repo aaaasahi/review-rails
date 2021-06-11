@@ -18,6 +18,14 @@ require("@rails/actiontext")
 import $ from 'jquery'
 import axios from 'axios'
 
+const handleHeartDisplay = (hasLiked) => {
+  if (hasLiked) {
+    $('.active-heart').removeClass('hidden')
+  } else {
+    $('.inactive-heart').removeClass('hidden')
+  }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const dataset = $('#article-show').data()
@@ -25,10 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   axios.get(`/articles/${articleId}/like`)
     .then((response) => {
       const hasLiked = response.data.hasLiked
-      if (hasLiked) {
-        $('.active-heart').removeClass('hidden')
-      } else {
-        $('.inactive-heart').removeClass('hidden')
-      }
+      handleHeartDisplay(hasLiked)
     })
 })
