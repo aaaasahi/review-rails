@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.inactive-heart').on('click', () => {
       axios.post(`/articles/${articleId}/like`)
         .then((response) => {
+          if (response.data.status === 'ok') {
+            $('.active-heart').removeClass('hidden')
+            $('.inactive-heart').addClass('hidden')
+          }
           console.log(response)
         })
         .catch((e) => {
@@ -53,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.active-heart').on('click', () => {
       axios.delete(`/articles/${articleId}/like`)
         .then((response) => {
+          if (response.data.status === 'ok') {
+            $('.active-heart').addClass('hidden')
+            $('.inactive-heart').removeClass('hidden')
+          }
           console.log(response)
         })
         .catch((e) => {
