@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'articles#index'
   resource :timeline, only: [:show]
+  get '/accounts/:id/unsubscribe' => 'accounts#unsubscribe', as: 'unsubscribe'
+  patch '/accounts/:id/withdrawal' => 'accounts#withdrawal', as: 'withdrawal'
 
   resources :articles do
     resources :comments, only: [:index, :new, :create]
