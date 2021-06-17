@@ -16,6 +16,10 @@
               = link_to 'Follow', account_follows_path(user), data: {method: 'post'}
       .profilePage_user_introduction
         = user.profile&.introduction
+      - if user == current_user
+        = link_to '退会する', unsubscribe_path(user)
+      - if user.is_valid == false 
+        %p 退会済ユーザーです
 
 
   - user.articles.each do |article|
