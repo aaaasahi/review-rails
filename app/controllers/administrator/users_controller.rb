@@ -2,7 +2,19 @@ class Administrator::UsersController < ApplicationController
   before_action :admin_user
   
   def index
-    @users = User.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name" , 
+              template: "administrator/users/index.html.haml",
+              layout: 'application',
+              encording: 'UTF-8'
+      end
+    end
+  end
+
+  def show
+    
   end
   
   private
