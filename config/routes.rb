@@ -4,10 +4,17 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   
   devise_for :users
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   root to: 'articles#index'
   resource :timeline, only: [:show]
   get '/accounts/:id/unsubscribe' => 'accounts#unsubscribe', as: 'unsubscribe'
   patch '/accounts/:id/withdrawal' => 'accounts#withdrawal', as: 'withdrawal'
+
+  namespace :administrator do
+    resources :users, only: [:index]
+  end
 
   resources :articles do
     resources :comments, only: [:index, :new, :create]
