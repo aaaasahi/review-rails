@@ -1,13 +1,10 @@
-%h1 登録済みのユーザー一覧
-%table.table
-  %thead
-    %tr
-      %th id
-      %th 名前
-      %th 登録日
-  %tbody
-    - @users.each do |user|
-      %tr
-        %td= user.id
-        %td= user.email
-        %td= user.created_at
+.container
+  %h3 ユーザー登録情報
+  %div ユーザー登録者数 : #{User.all.count}人
+  %div
+    = line_chart User.group_by_day(:created_at).count 
+  %div 記事投稿数 : #{Article.all.count}
+  %div
+    = line_chart Article.group_by_day(:created_at).count 
+
+  
