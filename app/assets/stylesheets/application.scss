@@ -70,3 +70,13 @@ a {
   padding: 8px 16px;
   font-size: 12px;
 }
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  height: 50px; 
+  font-size: 20px;
+}
+table {
+  width: 80%;
+}
