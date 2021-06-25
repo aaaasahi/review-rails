@@ -9,5 +9,8 @@
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
 WickedPdf.config = {
-  :exe_path => "#{Gem.loaded_specs['wkhtmltopdf-binary'].full_gem_path}/bin/wkhtmltopdf"
+  layout: "pdf",
+  page_size: "A4",
+  orientation: "Portrait",
+  encoding: 'UTF-8'
 }
