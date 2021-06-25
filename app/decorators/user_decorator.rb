@@ -12,4 +12,8 @@ module UserDecorator
       'default-avatar.png'
     end
   end
+
+  def display_created_at
+    I18n.l(self.created_at, format: :default)
+  end
 end

@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   patch '/accounts/:id/withdrawal' => 'accounts#withdrawal', as: 'withdrawal'
 
   namespace :administrator do
+    resources :admins, only: [:index]
     resources :users, only: [:index]
+    resources :articles, only: [:index]
   end
 
   resources :articles do

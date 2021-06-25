@@ -9,8 +9,13 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
+  def admin_user
+    redirect_to(root_url) unless current_user.administrator?
+  end
+
   private
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
+
 end

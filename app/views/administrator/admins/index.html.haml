@@ -1,0 +1,14 @@
+.container
+  %h1 全体情報
+  %h3 ユーザー登録情報
+  %div ユーザー登録者数 : #{@users.count}人
+  %div 
+    = link_to 'ユーザー情報詳細', administrator_users_path
+  %div
+    = line_chart User.group_by_day(:created_at).count
+  %h3 記事登録情報
+  %div 記事投稿数 : #{@articles.count}
+  %div 
+    = link_to '記事情報詳細', administrator_articles_path
+  %div
+    = line_chart Article.group_by_day(:created_at).count 
