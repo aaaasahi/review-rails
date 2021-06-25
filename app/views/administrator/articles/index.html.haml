@@ -1,0 +1,47 @@
+%h1 記事情報
+
+= link_to "PDF", administrator_articles_path(format: :pdf)
+%br
+
+%h4 全体
+%table
+  %thead 
+    %th ID
+    %th タイトル
+    %th 投稿者
+    %th 投稿日
+
+  %tbody
+    - @articles.each do |article|
+      %tr 
+        %th
+          = article.id
+        %th
+          = article.title
+        %th 
+          = article.user.email
+        %th
+          = article.display_created_at
+
+- if @articles_published_at_yesterday.present?
+  %h4 前日
+  %div 前日投稿数 : #{@articles_published_at_yesterday.count}
+  %table
+    %thead 
+      %th ID
+      %th タイトル
+      %th 投稿者
+  
+    %tbody
+      -  @articles_published_at_yesterday.each do |article|
+        %tr 
+          %th
+            = article.id
+          %th
+            = article.title
+          %th 
+            = article.user.email
+
+
+%div
+  = link_to '管理者TOP', administrator_admins_path
