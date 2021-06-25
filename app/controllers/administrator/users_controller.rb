@@ -1,12 +1,14 @@
 class Administrator::UsersController < ApplicationController
-  before_action :admin_user
   
   def index
-    @users = User.all.order(created_at: :desc)
-  end
-  
-  private
-    def admin_user
-      redirect_to(root_url) unless current_user.administrator?
+    @users = User.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name",
+              template: "administrator/users/index.html.haml"
+      end
     end
+  end
+
 end

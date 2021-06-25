@@ -1,13 +1,23 @@
-%h1 登録済みのユーザー一覧
-%table.table
-  %thead
-    %tr
-      %th id
-      %th 名前
-      %th 登録日
+%h1 ユーザー情報
+
+= link_to "PDF", administrator_users_path(format: :pdf)
+%br
+
+%table
+  %thead 
+    %th ID
+    %th Email
+    %th 登録日
   %tbody
     - @users.each do |user|
-      %tr
-        %td= user.id
-        %td= user.email
-        %td= user.created_at
+      %tr 
+        %th
+          = user.id
+        %th
+          = user.email
+        %th
+          = user.display_created_at
+
+
+%div
+  = link_to '管理者TOP', administrator_admins_path
