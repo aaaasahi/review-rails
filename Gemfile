@@ -35,6 +35,7 @@ gem 'groupdate'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'whenever', require: false
+gem 'gretel'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
