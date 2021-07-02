@@ -1,4 +1,5 @@
 .article#article-show{data: {article_id: @article.id}}
+  - breadcrumb :article_show, @article
   - if @article.eyecatch.attached?
     .article_image
       = image_tag @article.eyecatch
