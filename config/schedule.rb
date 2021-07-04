@@ -30,3 +30,8 @@ set :output, "#{Rails.root}/log/cron.log"
 every 1.day at: '9am' do
   rake 'article_summary:mail_article_summary'
 end
+
+every 1.day at: '9am' do
+  rake 'rake change_status:change_status'
+end
+
