@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :eyecatch)
+    params.require(:article).permit(:title, :content, :eyecatch, :date)
   end
 
   def set_article

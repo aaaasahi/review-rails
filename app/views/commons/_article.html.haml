@@ -6,6 +6,8 @@
     .card_content
       .card_title
         = article.title
+        - if article.status? 
+          %p 終了
         .card_heart
           = image_tag 'heart.svg'
           %span= article.like_count
