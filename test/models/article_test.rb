@@ -3,6 +3,8 @@
 # Table name: articles
 #
 #  id         :bigint           not null, primary key
+#  date       :date
+#  status     :boolean          default(FALSE)
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
