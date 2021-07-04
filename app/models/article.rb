@@ -3,6 +3,8 @@
 # Table name: articles
 #
 #  id         :bigint           not null, primary key
+#  date       :date
+#  status     :boolean          default(FALSE)
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -22,5 +24,10 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :user
   has_many :likes, dependent: :destroy
+
+  validate :day_after_today
+  def day_after_today
+      errors.add(:date, 'は、今日を含む過去の日付を入力して下さい') if date < Date.today
+  end
 
 end

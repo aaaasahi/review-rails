@@ -19,6 +19,9 @@
             = link_to '削除する', article_path(@article), data: { method: 'delete', confirm: '本当に削除してよろしいですか？' }
   .article_content
     = @article.content
+  - if @article.date.present?
+    .article_content
+      = @article.display_date
   - if user_signed_in?
     .article_heart.hidden.active-heart
       = image_tag 'heart-active.svg'
