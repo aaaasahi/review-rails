@@ -16,6 +16,7 @@
 #
 class Article < ApplicationRecord
   validates :title, presence: true
+  validates :title, length: { minimum: 2, maximum: 100 }
   validates :content, presence: true
 
   has_one_attached :eyecatch
@@ -25,9 +26,9 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
 
-  validate :day_after_today
-  def day_after_today
-      errors.add(:date, 'は、今日を含む過去の日付を入力して下さい') if date < Date.today
-  end
+  #validate :day_after_today
+  #def day_after_today
+  #    errors.add(:date, 'は、今日を含む過去の日付を入力して下さい') if date < Date.today
+  #end
 
 end
