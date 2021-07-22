@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   root to: 'articles#index'
-  resource :timeline, only: [:show]
   get '/accounts/:id/unsubscribe' => 'accounts#unsubscribe', as: 'unsubscribe'
   patch '/accounts/:id/withdrawal' => 'accounts#withdrawal', as: 'withdrawal'
 
@@ -18,17 +17,23 @@ Rails.application.routes.draw do
     resources :articles, only: [:index]
   end
 
-  resources :articles do
-    resources :comments, only: [:index, :new, :create]
-
-    resource :like, only: [:show, :create, :destroy]
-  end
+  resources :articles 
 
   resources :accounts, only: [:show] do
     resources :follows, only: [:create]
     resources :unfollows, only: [:create]
   end
 
-  resource :profile, only: [:show, :edit, :update]
-  resources :favorites, only: [:index]
+  scope module: :apps do
+    resources :favorites, only: [:index]
+    resource :timeline, only: [:show]
+    resource :profile, only: [:show, :edit, :update]
+  end
+
+  namespace :api, defaults: {format: :json} do
+    scope '/articles/:article_id' do
+      resources :comments, only: [:index, :create]
+      resource :like, only: [:show, :create, :destroy]
+    end
+  end
 end
